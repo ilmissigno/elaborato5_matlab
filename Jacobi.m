@@ -10,6 +10,7 @@ function [x,niter,resrel] = Jacobi(A,b,TOL,MAXITER)
 % TOL = facoltativo,tolleranza gestita dall'utente,se omessa TOL=10^-6
 % MAXITER = facoltativo,numero massimo di iterazioni,se omesso e' 500
 %%
+%a
 %%
 %% Parametri di output:
 % x = soluzione calcolata dal sistema
@@ -29,9 +30,9 @@ function [x,niter,resrel] = Jacobi(A,b,TOL,MAXITER)
 % [x,niter,resrel] = Jacobi(A,b,TOL,MAXITER)
 %%
 %% Descrizione
-% x = Jacobi(A,b) risolve il sistema di equazioni lineari A*x = b. 
-% A deve essere una matrice quadrata sparsa, b deve essere un vettore colonna 
-% avente lo stesso numero di righe di A. La soluzione è corretta 
+% x = Jacobi(A,b) risolve il sistema di equazioni lineari A*x = b.
+% A deve essere una matrice quadrata sparsa, b deve essere un vettore colonna
+% avente lo stesso numero di righe di A. La soluzione ï¿½ corretta
 % a meno di un errore dovuto al malcondizionamento della matrice A.
 % x = Jacobi(A,b,TOL) usa TOL per determinare l'accuratezza della
 % soluzione. Se non specificato TOL = 10^-6
@@ -134,8 +135,8 @@ end
 
 %% Criterio di Arresto di Convergenza e Iterazione
 % Appena viene verificato il Criterio di Arresto di Convergenza
-% (errore k-esimo assoluto [associato alla soluzione al passo k+1 e k] 
-% minore o uguale al valore di tolleranza k-esimo 
+% (errore k-esimo assolutoï¿½[associato alla soluzione al passo k+1 e k]
+% minore o uguale al valore di tolleranza k-esimo
 % associato alla soluzione k), il ciclo viene arrestato. Tutto in accordo
 % con la condizione di emergenza che il numero di iterazioni contate non
 % superino o siano uguali al valore massimo di iterazioni immesso in
@@ -162,7 +163,7 @@ end
 % di iterazioni.
 residuo_rel = norm(b-A*x_sol,Inf)/norm(b,Inf);
 if (MAXITER==iterazioni)
-    warning('Warn:NITER_MAGG_MAXITER','Il numero di iterazioni effettuate non è sufficiente per raggiungere l''accuratezza desiderata. niter=%d, residuo_relativo=%s',iterazioni,residuo_rel);
+    warning('Warn:NITER_MAGG_MAXITER','Il numero di iterazioni effettuate non ï¿½ sufficiente per raggiungere l''accuratezza desiderata. niter=%d, residuo_relativo=%s',iterazioni,residuo_rel);
 end
 
 switch nargout
@@ -201,15 +202,15 @@ end
 if((MAXITER <= 0) || (mod(MAXITER,1) > eps))
     error('Err:MAXITER_NON_VALIDO','MAXITER deve essere un intero positivo');
 end
-   
-% Segnalo se NMAX è piccolo
+
+% Segnalo se NMAX ï¿½ piccolo
 if (MAXITER < 10)
-    warning('Warn:MAXITER_PICCOLO','Il numero di iterazioni specificato è molto piccolo, l''errore di calcolo potrebbe essere elevato');
+    warning('Warn:MAXITER_PICCOLO','Il numero di iterazioni specificato ï¿½ molto piccolo, l''errore di calcolo potrebbe essere elevato');
 end
 
-% Segnalo se NMAX è abbastanza grande.
+% Segnalo se NMAX ï¿½ abbastanza grande.
 if (MAXITER > 10000)
-    warning('Warn:MAXITER_GRANDE','Il numero di iterazioni specificato è molto alto, l''esecuzione potrebbe essere più lenta');
+    warning('Warn:MAXITER_GRANDE','Il numero di iterazioni specificato ï¿½ molto alto, l''esecuzione potrebbe essere piï¿½ lenta');
 end
 end
 
@@ -226,10 +227,10 @@ if (size(A,1) ~= size(A,2))
 end
 
 if ((~isnumeric(A)) || (~isreal(A)) || (isempty(A)))
-    error('Err:A_NON_VALIDA','Uno o più valori inseriti in A non sono validi');
+    error('Err:A_NON_VALIDA','Uno o piï¿½ valori inseriti in A non sono validi');
 end
 if((any(find(isinf(A)))) || (any(find(isnan(A)))))
-    error('Err:A_NON_VALIDA','Uno o più valori inseriti in A non sono validi');
+    error('Err:A_NON_VALIDA','Uno o piï¿½ valori inseriti in A non sono validi');
 end
 %Controllo di verifica se ci sono elementi nulli sulla diagonale principale
 if ((any(find(abs(diag(A)) < eps(norm(A,Inf)))))==1)
@@ -241,7 +242,7 @@ end
 % Controllo se il valore di Tolleranza immesso rispetta i criteri di una
 % tolleranza.
 function TOL = controllo_Tolleranza(TOL)
-% TOL è un intero positivo
+% TOL ï¿½ un intero positivo
 if ((~isscalar(TOL)) || (~isnumeric(TOL)))
     error('Err:TOL_NON_VALIDO','TOL deve essere un numero positivo');
 end
@@ -249,14 +250,14 @@ if((isinf(TOL)) || (isnan(TOL)) || (TOL <= 0))
     error('Err:TOL_NON_VALIDO','TOL deve essere un numero positivo');
 end
 
-% Segnalo (eventualmente) che il TOL specificato è troppo piccolo
+% Segnalo (eventualmente) che il TOL specificato ï¿½ troppo piccolo
 if (TOL < eps)
-    warning('Warn:TOL_PICCOLO','Il valore di TOL specificato è troppo piccolo. Verrà usato il valore di default TOL = 10^-6');
+    warning('Warn:TOL_PICCOLO','Il valore di TOL specificato ï¿½ troppo piccolo. Verrï¿½ usato il valore di default TOL = 10^-6');
     TOL = 10^-6;
 end
 
 if (TOL >= 1)
-    warning('Warn:TOL_GRANDE','Il valore di TOL specificato è troppo grande. Il risultato fornito potrebbe essere molto inaccurato. Si guardi la documentazione.');
+    warning('Warn:TOL_GRANDE','Il valore di TOL specificato ï¿½ troppo grande. Il risultato fornito potrebbe essere molto inaccurato. Si guardi la documentazione.');
 end
 end
 
@@ -269,9 +270,9 @@ if ((size(b,1) ~= dim) || (size(b,2))~=1)
 end
 
 if ((~isnumeric(b)) || (any(find(isinf(b)))))
-    error('Err:B_NON_VALIDO','Uno o più valori inseriti nel vettore non sono validi');
+    error('Err:B_NON_VALIDO','Uno o piï¿½ valori inseriti nel vettore non sono validi');
 end
 if((any(find(isnan(b)))) || (~isreal(b)) || (isempty(b)))
-    error('Err:B_NON_VALIDO','Uno o più valori inseriti nel vettore non sono validi');
+    error('Err:B_NON_VALIDO','Uno o piï¿½ valori inseriti nel vettore non sono validi');
 end
 end
