@@ -260,7 +260,7 @@ if (TOL >= 1)
     warning('Warn:TOL_GRANDE','Il valore di TOL specificato � troppo grande. Il risultato fornito potrebbe essere molto inaccurato. Si guardi la documentazione.');
 end
 end
-
+%a
 %% Check del Vettore B
 % Controllo se il vettore B e' dello stesso numero di righe di A, che B
 % non contenga valori non ammessi e non reali e che abbia numero di colonne unitario.
